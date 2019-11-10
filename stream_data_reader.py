@@ -17,11 +17,12 @@ import config_file as cf
 
 buffer = cf.configuration.get('buffer')
 
+
 def run():
-    while(True):
+    while True:
         time.sleep(3)
         print('reading buffer...')
-        
+
         file_object = open(buffer, "r")
         data = file_object.readlines()
         for line in data:
@@ -30,17 +31,19 @@ def run():
         clear_buffer()
 
 
-def format_line(line):      
-    line = line.strip()   #strip out carriage return
-    key_value = line.split(" ")
-    key = key_value[0]#key is first item in list
-    value = (key_value[1],key_value[1])  #value is 2nd item 
-    return(key, value) #print a string, tab, and string
-    
+def format_line(line):
+    line = line.strip()  # strip out carriage return
+    key_value = line.split(",")
+    key = key_value[0]  # key is first item in list
+    value = (key_value[1], key_value[1])  # value is 2nd item
+    return key, value  # print a string, tab, and string
+
+
 def clear_buffer():
-    file_object = open(buffer,'w')
-    file_object.writelines('')   
-    file_object.close()  
+    file_object = open(buffer, 'w')
+    file_object.writelines('')
+    file_object.close()
+
 
 if __name__ == "__main__":
     run()
